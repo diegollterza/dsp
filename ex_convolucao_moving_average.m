@@ -1,3 +1,6 @@
+clc;
+format long;
+
 conv([1 2 1 3], [2 1 3])
 % 1) A partir do conceito de convolução do ponto de vista da superposição do sinal de entrada,
 convEntrada([1 2 1 3], [2 1 3])

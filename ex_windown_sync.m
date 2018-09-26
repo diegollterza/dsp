@@ -1,6 +1,7 @@
+clc;
+format long;
 % Dado um sinal amostrado com fs=10kHz e com as seguintes
 % componentes de frequência:
-clc;
 
 T=1/10000;
 fs=1/T;
