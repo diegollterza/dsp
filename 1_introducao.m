@@ -13,7 +13,7 @@ H = tf([1 -1],[1 1 0.3],0.1)
 # Para converter de volta usamos
 Hc = d2c(H)
 
-# zpk - Zero Pole Gain!!!!! Essa função parece não estar funcionando no octave, só n
+# zpk - Zero Pole Gain!!!!! Essa função parece não estar funcionando no octave, só no matlab
 zpk(z_zoh_sinal);
 zpk(z_tustin_sinal);
 
