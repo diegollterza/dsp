@@ -40,24 +40,10 @@ sinal=sin(1*pi*200*t)+sin(1*pi*400*t)+sin(1*pi*600*t)+sin(1*pi*800*t)+sin(1*pi*1
 
 H = iir_buttlerworth_base(-1, 100, -15, 400)
 Hz=c2d(H,T, 'zoh');
-# Nao consegui uma forma de converter a transformada Z em uma equação de diferenaças
-# Vou montar o algoritimo do filtro manualmente e depois sobrando um tempo volto nisso.
-z = tf([1],[1 0], T)
-[Nd,Dd]=tfdata(Hz,'v');
-dsp_z = filt(Nd, Dd)
-
-N=length(sinal);
-y=zeros(N);
-y(1) = 0.01313*sinal(1);
-y(2) = 1.752*y(2-1) + 0.01427*sinal(2-1)  + 0.01313*sinal(2);
-for k=3:N 
-    y(k) = 1.752*y(k-1) - 0.7745*y(k-2) + 0.01427*sinal(k-1) + 0.01313*sinal(k);
-endfor
-
 figure(1), espectro(sinal, 1/T);
-figure(2), espectro(y, 1/T);
-
-
+[B,A]=tfdata(Hz,'v');
+filtrado = filter(B,A, sinal);
+figure(2), espectro(filtrado, 1/T);
 
 #1) Projetar (algoritmo) um filtro IIR Butterworth para eliminar as componentes inferiores a 1,2kHz.
 #2) Projetar (algoritmo) um filtro IIR Butterworth para eliminar as componentes superiores a 1kHz.
