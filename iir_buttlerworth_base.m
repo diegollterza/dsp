@@ -1,4 +1,4 @@
-function [y] = iir_buttlerworth_base(ganho_db_p, fc_p, ganho_db_s, fc_s)
+function [h, omega_c] = iir_buttlerworth_base(ganho_db_p, fc_p, ganho_db_s, fc_s)
   pkg load control
   ganho_p = db2mag(ganho_db_p);
   ganho_s = db2mag(ganho_db_s);
@@ -23,6 +23,6 @@ function [y] = iir_buttlerworth_base(ganho_db_p, fc_p, ganho_db_s, fc_s)
   disp(rp');
   
   H=tf(omega_c^n,real(poly(rp)));
-  y=zpk(H);
+  h=zpk(H);
   
 endfunction
