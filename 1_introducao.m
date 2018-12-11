@@ -18,3 +18,25 @@ zpk(z_zoh_sinal);
 zpk(z_tustin_sinal);
 
 
+ts=1/5000;
+fs=1/ts;
+t=0:ts:1-ts;
+
+# Dada um função de transferencia 
+num = 1;
+den = [1 -0.2]; # Isso ta longe de ser um filtro descente, serve mais para explicar o uso da função filter!!!! Que vai ser muito importante daqui pra frente.
+Hz = filt(num,den,ts) 
+# Um sinal qualquer
+sinal=sin(1*pi*200*t)+sin(1*pi*400*t)+sin(1*pi*600*t)+sin(1*pi*800*t)+sin(1*pi*1000*t)+sin(1*pi*1200*t)+sin(1*pi*1400*t)+sin(1*pi*1600*t)+sin(1*pi*1800*t);
+# Podemos aplicar um filtro nesse sinal com comando:
+filtrado = filter(den, num, sinal);
+
+figure(1), plot(sinal, color='r');
+figure(2), plot(filtrado, color='b');
+figure(3), espectro(sinal, 1/ts);
+figure(4), espectro(filtrado, 1/ts);
+
+
+
+
+
